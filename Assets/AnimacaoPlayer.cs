@@ -30,4 +30,6 @@ public class AnimacaoPlayer : MonoBehaviour
         animatorCajado.SetBool("AtaqueConstante", false);
         animatorCajado.SetBool("Parado", true);
     }
+
+    
 }

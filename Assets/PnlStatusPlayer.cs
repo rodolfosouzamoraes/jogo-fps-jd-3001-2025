@@ -59,6 +59,11 @@ public class PnlStatusPlayer : MonoBehaviour
         return manaAtual >= consumo;
     }
 
+    public bool TemMana()
+    {
+        return manaAtual > 0;
+    }
+
     private void AtualizarStatusMana()
     {
         manaSlider.value = manaAtual;

@@ -34,6 +34,8 @@ public class AtaquePlayer : MonoBehaviour
         else if(Input.GetAxis("AtaqueConstante") > 0 && CanvasGameMng.PnlStatusPlayer.TemMana() == true)
         {
             PlayerMng.AnimacaoPlayer.PlayAtaqueConstante();
+            //Consumir a mana constantemente
+            CanvasGameMng.PnlStatusPlayer.ConsumirManaConstante();
         }
         else
         {

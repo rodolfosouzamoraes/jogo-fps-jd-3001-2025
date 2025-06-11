@@ -69,4 +69,16 @@ public class PnlStatusPlayer : MonoBehaviour
         manaSlider.value = manaAtual;
         txtMana.text = $"{(int)manaAtual}/{manaMax}";
     }
+
+    public void IncrementarMana(float porcentagem)
+    {
+        manaAtual += manaMax * porcentagem;
+
+        if(manaAtual > manaMax)
+        {
+            manaAtual = manaMax;
+        }
+
+        AtualizarStatusMana();
+    }
 }

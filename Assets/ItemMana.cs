@@ -18,4 +18,16 @@ public class ItemMana : MonoBehaviour
         //Definir a porcentagem da mana
         porcentagemMana = valorMana / 100;
     }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if(other.gameObject.tag == "Player")
+        {
+            //Acessar a mana do player e atribuir a porcentagem
+            CanvasGameMng.PnlStatusPlayer.IncrementarMana(porcentagemMana);
+
+            //Destruir mana
+            Destroy(gameObject,Time.deltaTime);
+        }
+    }
 }

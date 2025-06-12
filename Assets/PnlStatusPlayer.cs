@@ -11,6 +11,12 @@ public class PnlStatusPlayer : MonoBehaviour
     public Slider manaSlider; //slider da mana    
     public TextMeshProUGUI txtMana; //TextMeshPro da mana
 
+    [Header("Config Vida")]
+    public float vidaMax;
+    public float vidaAtual;
+    public Slider vidaSlider;
+    public TextMeshProUGUI txtVida;
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -24,6 +30,17 @@ public class PnlStatusPlayer : MonoBehaviour
 
         //Configurar o texto da mana
         txtMana.text = $"{manaAtual}/{manaMax}";
+
+        //Defini a vida no maximo ao iniciar o jogo
+        vidaAtual = vidaMax;
+
+        //Configurar o slider
+        vidaSlider.maxValue = vidaMax;
+        vidaSlider.minValue = 0;
+        vidaSlider.value = vidaAtual;
+
+        //Configurar o texto da vida
+        txtVida.text = $"{vidaAtual}/{vidaMax}";
     }
 
     public void ConsumirMana(float consumo)
@@ -80,5 +97,37 @@ public class PnlStatusPlayer : MonoBehaviour
         }
 
         AtualizarStatusMana();
+    }
+
+    private void AtualizarStatusVida()
+    {
+        vidaSlider.value = vidaAtual;
+        txtVida.text = $"{(int)vidaAtual}/{vidaMax}";
+    }
+
+    public void ConsumirVida(float valorConsumido)
+    {
+        vidaAtual -= valorConsumido;
+
+        if(vidaAtual < 0)
+        {
+            vidaAtual = 0;
+            //Game Over
+
+        }
+
+        AtualizarStatusVida();
+    }
+
+    public void IncrementarVida(float porcentagem)
+    {
+        vidaAtual += vidaMax * porcentagem;
+
+        if(vidaAtual > vidaMax)
+        {
+            vidaAtual = vidaMax;
+        }
+
+        AtualizarStatusVida();
     }
 }

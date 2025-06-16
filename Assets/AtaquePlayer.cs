@@ -17,6 +17,8 @@ public class AtaquePlayer : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if(CanvasGameMng.Instance.JogoPausado == true) return;
+
         //Verificar qual arma está ativa
         if (idArma == 0) { 
             //Atacar com o Cajado

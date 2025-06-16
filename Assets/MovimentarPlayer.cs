@@ -34,6 +34,9 @@ public class MovimentarPlayer : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        //Verificar se o jogo está pausado
+        if (CanvasGameMng.Instance.JogoPausado == true) return;
+
         MovimentarXYZ();
 
         RotacionarY();

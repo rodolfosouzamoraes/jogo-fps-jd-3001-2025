@@ -15,6 +15,12 @@ public class CanvasGameMng : MonoBehaviour
         }
         Destroy(gameObject);
     }
+
+    private bool jogoPausado;
+    public bool JogoPausado
+    {
+        get { return jogoPausado; }
+    }
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -25,5 +31,14 @@ public class CanvasGameMng : MonoBehaviour
     void Update()
     {
         
+    }
+
+    public void PausarJogo()
+    {
+        jogoPausado = true;
+    }
+    public void DespausarJogo()
+    {
+        jogoPausado = false;
     }
 }

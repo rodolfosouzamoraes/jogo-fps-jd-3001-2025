@@ -12,9 +12,11 @@ public class PnlLoja : MonoBehaviour
     public void ExibirPainelLoja()
     {
         pnlLoja.SetActive(true);
+        CanvasGameMng.Instance.PausarJogo();
     }
     public void OcultarPainelLoja()
     {
         pnlLoja.SetActive(false);
+        CanvasGameMng.Instance.DespausarJogo();
     }
 }

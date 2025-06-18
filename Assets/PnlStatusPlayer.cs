@@ -33,7 +33,8 @@ public class PnlStatusPlayer : MonoBehaviour
     {
         ConfigurarMana();
         ConfigurarStamina();
-        ConfigurarVida();        
+        ConfigurarVida();
+        ConfigurarConsumoManaConstante();
     }
 
     private void Update()
@@ -45,9 +46,10 @@ public class PnlStatusPlayer : MonoBehaviour
         }
     }
 
-    private void ConfigurarMana()
+    public void ConfigurarMana()
     {
         //Defini a mana no maximo ao iniciar o jogo
+        manaMax = GameManager.DadosPlayer.manaMax;
         manaAtual = manaMax;
 
         //Configurar o slider
@@ -59,9 +61,10 @@ public class PnlStatusPlayer : MonoBehaviour
         txtMana.text = $"{manaAtual}/{manaMax}";
     }
 
-    private void ConfigurarVida()
+    public void ConfigurarVida()
     {
         //Defini a vida no maximo ao iniciar o jogo
+        vidaMax = GameManager.DadosPlayer.vidaMax;
         vidaAtual = vidaMax;
 
         //Configurar o slider
@@ -73,9 +76,10 @@ public class PnlStatusPlayer : MonoBehaviour
         txtVida.text = $"{vidaAtual}/{vidaMax}";
     }
 
-    private void ConfigurarStamina()
+    public void ConfigurarStamina()
     {
         //Defini a stamina no maximo ao iniciar o jogo
+        staminaMax = GameManager.DadosPlayer.staminaMax;
         staminaAtual = staminaMax;
 
         //Configurar o slider
@@ -88,6 +92,12 @@ public class PnlStatusPlayer : MonoBehaviour
 
         //Definir para não restaurar no inicio a stamina
         permitirRestaurarStamina = false;
+    }
+
+    public void ConfigurarConsumoManaConstante()
+    {
+        //Obter o consumo padrão da mana e aumentar um pouco
+        consumoConstante = GameManager.DadosPlayer.consumoMana * 1.5f;
     }
 
     public void ConsumirMana(float consumo)

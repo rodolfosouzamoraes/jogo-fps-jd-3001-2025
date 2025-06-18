@@ -16,4 +16,5 @@ public class Player
     public float danoCajado;
     public float consumoMana;
     public float danoArco;
+    public int moedas;
 }

@@ -30,6 +30,7 @@ public static class DBMng
             novoPlayer.danoCajado = 50;
             novoPlayer.consumoMana = 25;
             novoPlayer.danoArco = 75;
+            novoPlayer.moedas = 0;
 
             //Salvar o novo Player
             SalvarDadosPlayer(novoPlayer);
@@ -109,6 +110,28 @@ public static class DBMng
         {
             player.consumoMana = 10;
         }
+
+        SalvarDadosPlayer(player);
+
+        return player;
+    }
+
+    public static Player ConsumirMoedas(int valorCosumido)
+    {
+        Player player = ObterDadosPlayer();
+
+        player.moedas -= valorCosumido;
+
+        SalvarDadosPlayer(player);
+
+        return player;
+    }
+
+    public static Player AdicionarMoedas(int valorInserido)
+    {
+        Player player = ObterDadosPlayer();
+
+        player.moedas += valorInserido;
 
         SalvarDadosPlayer(player);
 

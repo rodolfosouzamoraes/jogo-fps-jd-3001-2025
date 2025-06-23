@@ -2202,9 +2202,9 @@ MonoBehaviour:
   pnlLoja: {fileID: 96849535}
   itemVenda: {fileID: 382717686662889767, guid: d6b92d2dc7a2f6741af52f7fd6a6aca7, type: 3}
   atributosVendas:
-  - id: 1
-    nome: Vida
-    valorVenda: 500
+  - id: 0
+    nome: Mana
+    valorVenda: 0
     icone: {fileID: 10901, guid: 0000000000000000f000000000000000, type: 0}
   listaItemVenda: []
 --- !u!1 &590411091

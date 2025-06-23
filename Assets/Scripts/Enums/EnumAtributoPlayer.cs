@@ -4,5 +4,7 @@ public enum EnumAtributoPlayer
     vida,
     stamina,
     cajado,
-    arco
+    arco,
+    flecha,
+    consumoMana
 }

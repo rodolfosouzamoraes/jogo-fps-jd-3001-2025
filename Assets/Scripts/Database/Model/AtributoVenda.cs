@@ -4,8 +4,8 @@ using System;
 [Serializable]
 public class AtributoVenda
 {
-    public int id;
+    public EnumAtributoPlayer id;
     public string nome;
-    public float valorVenda;
+    public int valorVenda;
     public Sprite icone;
 }

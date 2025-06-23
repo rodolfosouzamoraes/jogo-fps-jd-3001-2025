@@ -5,17 +5,17 @@ using UnityEngine.UI;
 
 public class ItemVenda : MonoBehaviour
 {
-    public int idVenda;
+    public EnumAtributoPlayer idVenda;
     public TextMeshProUGUI txtNome;
     public TextMeshProUGUI txtValorVenda;
     public Image imgIconeVenda;
     public Image imgBotaoCompra;
     public Color botaoCompraOn;
     public Color botaoCompraOff;
-    private float valorVenda;
-    private float totalMoedas;
+    private int valorVenda;
+    private int totalMoedas;
     private bool permitirCompra;
-    public void ConfigurarItem(AtributoVenda venda, float moedasPlayer)
+    public void ConfigurarItem(AtributoVenda venda, int moedasPlayer)
     {
         idVenda = venda.id;
         valorVenda = venda.valorVenda;

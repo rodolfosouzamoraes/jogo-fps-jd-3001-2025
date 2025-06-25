@@ -58,7 +58,7 @@ public class PnlStatusPlayer : MonoBehaviour
         manaSlider.value = manaAtual;
 
         //Configurar o texto da mana
-        txtMana.text = $"{manaAtual}/{manaMax}";
+        txtMana.text = $"{(int)manaAtual}/{(int)manaMax}";
     }
 
     public void ConfigurarVida()
@@ -73,7 +73,7 @@ public class PnlStatusPlayer : MonoBehaviour
         vidaSlider.value = vidaAtual;
 
         //Configurar o texto da vida
-        txtVida.text = $"{vidaAtual}/{vidaMax}";
+        txtVida.text = $"{(int)vidaAtual}/{(int)vidaMax}";
     }
 
     public void ConfigurarStamina()
@@ -88,7 +88,7 @@ public class PnlStatusPlayer : MonoBehaviour
         staminaSlider.value = staminaAtual;
 
         //Configurar o texto da stamina
-        txtStamina.text = $"{staminaAtual}/{staminaMax}";
+        txtStamina.text = $"{(int)staminaAtual}/{(int)staminaMax}";
 
         //Definir para não restaurar no inicio a stamina
         permitirRestaurarStamina = false;
@@ -141,7 +141,7 @@ public class PnlStatusPlayer : MonoBehaviour
     private void AtualizarStatusMana()
     {
         manaSlider.value = manaAtual;
-        txtMana.text = $"{(int)manaAtual}/{manaMax}";
+        txtMana.text = $"{(int)manaAtual}/{(int)manaMax}";
     }
 
     public void IncrementarMana(float porcentagem)
@@ -159,7 +159,7 @@ public class PnlStatusPlayer : MonoBehaviour
     private void AtualizarStatusVida()
     {
         vidaSlider.value = vidaAtual;
-        txtVida.text = $"{(int)vidaAtual}/{vidaMax}";
+        txtVida.text = $"{(int)vidaAtual}/{(int)vidaMax}";
     }
 
     public void ConsumirVida(float valorConsumido)
@@ -191,7 +191,7 @@ public class PnlStatusPlayer : MonoBehaviour
     private void AtualizarStatusStamina()
     {
         staminaSlider.value = staminaAtual;
-        txtStamina.text = $"{(int) staminaAtual}/{staminaMax}";
+        txtStamina.text = $"{(int) staminaAtual}/{(int)staminaMax}";
     }
 
     private void RestaurarStamina()
@@ -241,5 +241,13 @@ public class PnlStatusPlayer : MonoBehaviour
     public bool TemStamina()
     {
         return staminaAtual > 0;
+    }
+
+    public void AtualizarTodosAtributosPlayer()
+    {
+        ConfigurarMana();
+        ConfigurarVida();
+        ConfigurarStamina();
+        ConfigurarConsumoManaConstante();
     }
 }

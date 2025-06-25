@@ -4,12 +4,14 @@ public class CanvasGameMng : MonoBehaviour
 {
     public static CanvasGameMng Instance;
     public static PnlStatusPlayer PnlStatusPlayer;
+    public static PnlLoja PnlLoja;
 
     private void Awake()
     {
         if(Instance == null)
         {
             PnlStatusPlayer = GetComponent<PnlStatusPlayer>();
+            PnlLoja = GetComponent<PnlLoja>();
             Instance = this;
             return;
         }

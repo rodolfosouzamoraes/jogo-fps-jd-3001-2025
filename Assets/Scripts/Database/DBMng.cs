@@ -79,40 +79,24 @@ public static class DBMng
                 player.nvArco += 1;
                 player.danoArco *= 1.07f;
             break;
+            case EnumAtributoPlayer.flecha:
+                player.arcoMax += 5;
+            break;
+            case EnumAtributoPlayer.consumoMana:
+                player.consumoMana *= -1.03f;
+
+                //Limitar o consumo minimo da mana
+                if (player.consumoMana < 10)
+                {
+                    player.consumoMana = 10;
+                }
+            break;
         }
 
         //Salvar os dados
         SalvarDadosPlayer(player);
 
         //Retornar o player atualizado
-        return player;
-    }
-
-    public static Player AumentarFlechas()
-    {
-        Player player = ObterDadosPlayer();
-
-        player.arcoMax += 5;
-
-        SalvarDadosPlayer(player);
-
-        return player;
-    }
-
-    public static Player DiminuirConsumoMana()
-    {
-        Player player = ObterDadosPlayer();
-
-        player.consumoMana *= -1.03f;
-
-        //Limitar o consumo minimo da mana
-        if(player.consumoMana < 10)
-        {
-            player.consumoMana = 10;
-        }
-
-        SalvarDadosPlayer(player);
-
         return player;
     }
 

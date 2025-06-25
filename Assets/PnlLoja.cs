@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 public class PnlLoja : MonoBehaviour
@@ -7,6 +8,7 @@ public class PnlLoja : MonoBehaviour
     public GameObject itemVenda;
     public AtributoVenda[] atributosVendas;
     public List<GameObject> listaItemVenda;
+    public TextMeshProUGUI txtMoedas;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -14,13 +16,15 @@ public class PnlLoja : MonoBehaviour
 
         //Iniciar a variavel da lista de itens
         listaItemVenda = new List<GameObject>();
+
+        txtMoedas.text = $"{GameManager.DadosPlayer.moedas}";
     }
 
     public void ExibirPainelLoja()
     {
         pnlLoja.SetActive(true);
         CanvasGameMng.Instance.PausarJogo();
-
+        
         ConfigurarItens();
     }
     public void OcultarPainelLoja()
@@ -31,6 +35,8 @@ public class PnlLoja : MonoBehaviour
 
     private void ConfigurarItens()
     {
+        txtMoedas.text = $"{GameManager.DadosPlayer.moedas}";
+
         //Percorrer a lista de itens e apagar todos os itens que lá existe
         foreach (var item in listaItemVenda)
         {
@@ -88,7 +94,12 @@ public class PnlLoja : MonoBehaviour
         GameManager.ConsumirMoedas(valorItem);
 
         //Subir o nível ou aumentar limites dos atributos do player
-        //Atualizar os dados dos itens na loja
+        GameManager.SubirNivel(idItem);
 
+        //Atualizar os dados dos itens na loja
+        ConfigurarItens();
+
+        //Atualizar a UI do player
+        CanvasGameMng.PnlStatusPlayer.AtualizarTodosAtributosPlayer();
     }
 }

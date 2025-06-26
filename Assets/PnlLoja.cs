@@ -9,6 +9,7 @@ public class PnlLoja : MonoBehaviour
     public AtributoVenda[] atributosVendas;
     public List<GameObject> listaItemVenda;
     public TextMeshProUGUI txtMoedas;
+    public GameObject contentVenda;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -75,7 +76,7 @@ public class PnlLoja : MonoBehaviour
             }
 
             //Instanciar o item venda
-            GameObject novoItemVenda = Instantiate(itemVenda, pnlLoja.transform);
+            GameObject novoItemVenda = Instantiate(itemVenda, contentVenda.transform);
 
             //Configurar o item venda
             novoItemVenda.GetComponent<ItemVenda>().ConfigurarItem(

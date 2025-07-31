@@ -14,4 +14,9 @@ public class SuporteAnimacaoCajado : MonoBehaviour
         //Consumir a mana na UI
         CanvasGameMng.PnlStatusPlayer.ConsumirMana(mana);
     }
+
+    public void AtacarInimigo()
+    {
+        PlayerMng.AtaquePlayer.AtacarInimigo();
+    }
 }

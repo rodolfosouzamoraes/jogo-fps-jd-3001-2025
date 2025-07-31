@@ -5,6 +5,7 @@ public class AtaquePlayer : MonoBehaviour
     public float consumoMana; //Valor do consumo da mana ao atacar
     public int idArma; //Id da arma selecionada
     public GameObject[] armas; //Armas do player
+    public float danoInicialCajado; //Dano inicial do cajado ao inimigo
 
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -41,6 +42,9 @@ public class AtaquePlayer : MonoBehaviour
             PlayerMng.AnimacaoPlayer.PlayAtaqueConstante();
             //Consumir a mana constantemente
             CanvasGameMng.PnlStatusPlayer.ConsumirManaConstante();
+
+            //Atacar Constantemente o inimigo
+            AtacarInimigo(Time.deltaTime);
         }
         else
         {
@@ -62,5 +66,17 @@ public class AtaquePlayer : MonoBehaviour
     public void AtualizarConsumoMana()
     {
         consumoMana = GameManager.DadosPlayer.consumoMana;
+    }
+
+    public void AtacarInimigo(float constancia = 1)
+    {
+        //Verificar se o inimigo está sendo visto pelo player
+        if(PlayerMng.VisaoPlayer.AlvoVisto() != null &&
+            PlayerMng.VisaoPlayer.AlvoVisto().tag == "Inimigo")
+        {
+            //Obter os dados do inimigo e efetuar um dano nele
+            DanoInimigo danoInimigo = PlayerMng.VisaoPlayer.AlvoVisto().GetComponent<DanoInimigo>();
+            danoInimigo.EfetuarDano(danoInicialCajado * GameManager.DadosPlayer.nvCajado * constancia);
+        }
     }
 }

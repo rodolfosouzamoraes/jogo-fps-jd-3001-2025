@@ -46,7 +46,15 @@ public class VisaoPlayer : MonoBehaviour
         }
         else
         {
+            //Remover o alvo do objeto
+            alvo = null;
+
             Debug.Log("Não estou vendo nada!");
         }
+    }
+
+    public GameObject AlvoVisto()
+    {
+        return alvo;
     }
 }

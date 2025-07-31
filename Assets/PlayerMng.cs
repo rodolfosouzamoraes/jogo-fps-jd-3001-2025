@@ -6,6 +6,7 @@ public class PlayerMng : MonoBehaviour
     public static MovimentarPlayer MovimentarPlayer;
     public static AnimacaoPlayer AnimacaoPlayer;
     public static AtaquePlayer AtaquePlayer;
+    public static VisaoPlayer VisaoPlayer;
 
     private void Awake()
     {
@@ -14,6 +15,7 @@ public class PlayerMng : MonoBehaviour
             MovimentarPlayer = GetComponent<MovimentarPlayer>();
             AnimacaoPlayer = GetComponent<AnimacaoPlayer>();
             AtaquePlayer = GetComponent<AtaquePlayer>();
+            VisaoPlayer = GetComponentInChildren<VisaoPlayer>();
             Instance = this;
             return;
         }

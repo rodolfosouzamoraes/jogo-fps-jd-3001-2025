@@ -4,6 +4,7 @@ public class ItemBau : MonoBehaviour
 {
     public GameObject pnlInteracao;
     public Animator animator;
+    public ParticleSystem particulaBau;
     private bool bauAberto = false;
 
     public void AbrirBau()
@@ -23,6 +24,10 @@ public class ItemBau : MonoBehaviour
     public void ObterItemBau()
     {
         //Armazenar a informação da coleta do item do bau
+        CanvasGameMng.PnlStatusPlayer.IncrementarBausAbertos();
+
+        //Emitir a particula
+        particulaBau.Play();
     }
 
 }

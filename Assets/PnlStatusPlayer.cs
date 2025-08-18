@@ -30,7 +30,7 @@ public class PnlStatusPlayer : MonoBehaviour
     [Header("Config Topo")]
     public GameObject pnlTopo;
     public GameObject[] iconesBaus;
-    private int totalBausAbertos;
+    private int totalBausAbertos = 0;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -253,5 +253,11 @@ public class PnlStatusPlayer : MonoBehaviour
         ConfigurarVida();
         ConfigurarStamina();
         ConfigurarConsumoManaConstante();
+    }
+
+    public void IncrementarBausAbertos()
+    {
+        totalBausAbertos++;
+        iconesBaus[totalBausAbertos].SetActive(true);
     }
 }

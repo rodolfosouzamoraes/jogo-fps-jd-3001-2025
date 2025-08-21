@@ -1,10 +1,13 @@
 using System.Collections;
 using TMPro;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class PnlStatusPlayer : MonoBehaviour
 {
+    public GameObject pnlStatusPlayer;
+
     [Header("Config Mana")]
     public float manaMax; //valor máximo da mana do player
     public float manaAtual; //valor atual da mana
@@ -30,7 +33,20 @@ public class PnlStatusPlayer : MonoBehaviour
     [Header("Config Topo")]
     public GameObject pnlTopo;
     public GameObject[] iconesBaus;
+    public TextMeshProUGUI txtObjetivo;
+    public TextMeshProUGUI txtTempo;
+    public int tempoMaximo;
     private int totalBausAbertos = 0;
+    private int totalBausMapa;
+    private string[] objetivos = { "Encontre os 7 baús!", "Encontre o portão final!" };
+    private int tempoDeJogo = 0;
+
+    [Header("Config Fim de Jogo")]
+    public GameObject pnlFimDeJogo;
+    public bool fimDeJogo; //Definir se o jogo acabou por vitória ou derrota
+
+    [Header("Config Game Over")]
+    public GameObject pnlGameOver;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -39,10 +55,35 @@ public class PnlStatusPlayer : MonoBehaviour
         ConfigurarStamina();
         ConfigurarVida();
         ConfigurarConsumoManaConstante();
+
+        //Obter a quantidade de baus no mapa
+        totalBausMapa = FindObjectsByType<ItemBau>(FindObjectsSortMode.None).Length;
+
+        //Definir o objetivo inicial
+        txtObjetivo.text = objetivos[0];
+
+        //zerar as variaveis dos baus e do tempo
+        totalBausAbertos = 0;
+        tempoDeJogo = 0;
     }
 
     private void Update()
     {
+        //Verificar se o jogo acabou para não contar mais o tempo nem restaurar a stamina
+        if (fimDeJogo == true) return;
+
+        //Decrementar o tempo da fase
+        tempoDeJogo = tempoMaximo - (int)Time.timeSinceLevelLoad;
+        //Atualizar o texto do tempo
+        txtTempo.text = tempoDeJogo.ToString();
+
+        //Verificar se o tempo acabou
+        if(tempoDeJogo == 0)
+        {
+            //Game Over
+            GameOver();
+        }
+
         //Verificar se pode restaurar a stamina
         if(permitirRestaurarStamina == true)
         {
@@ -170,11 +211,11 @@ public class PnlStatusPlayer : MonoBehaviour
     {
         vidaAtual -= valorConsumido;
 
-        if(vidaAtual < 0)
+        if(vidaAtual <= 0)
         {
             vidaAtual = 0;
             //Game Over
-
+            GameOver();
         }
 
         AtualizarStatusVida();
@@ -259,5 +300,46 @@ public class PnlStatusPlayer : MonoBehaviour
     {
         totalBausAbertos++;
         iconesBaus[totalBausAbertos].SetActive(true);
+
+        //verificar se os baus foram encontrados
+        if (EncontrouTodosBaus() == true)
+        {
+            //Mudar o objetivo
+            txtObjetivo.text = objetivos[1];
+        }
+    }
+
+    public void GameOver()
+    {
+        //Definir que o jogo acabou
+        fimDeJogo = true;
+        //Ocultar os painéis e ativar o game over
+        pnlTopo.SetActive(false);
+        pnlFimDeJogo.SetActive(false);
+        CanvasGameMng.PnlLoja.OcultarPainelLoja();
+        pnlStatusPlayer.SetActive(false);
+        pnlGameOver.SetActive(true);
+        //Reiniciar depois de 3 segundos
+        Invoke("ReiniciarJogo", 3);
+    }
+
+    public void ReiniciarJogo()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+    }
+
+    private bool EncontrouTodosBaus()
+    {
+        //Retornar verdadeiro ou falso para o total de baus encontrados
+        return totalBausAbertos == totalBausMapa;
+    }
+
+    public void FimDeJogo()
+    {
+        if (EncontrouTodosBaus() == true)
+        {
+            fimDeJogo = true;
+            pnlFimDeJogo.SetActive(true);
+        }
     }
 }

@@ -6,6 +6,7 @@ public class AtaquePlayer : MonoBehaviour
     public int idArma; //Id da arma selecionada
     public GameObject[] armas; //Armas do player
     public float danoInicialCajado; //Dano inicial do cajado ao inimigo
+    private bool playerMorreu; //Armazena a informação da morte do player
 
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -21,6 +22,20 @@ public class AtaquePlayer : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        //Verificar se o player morreu
+        if (playerMorreu == true) return;
+
+        if(CanvasGameMng.PnlStatusPlayer.fimDeJogo == true)
+        {
+            //Dizer que o player morreu
+            playerMorreu = true;
+            //Ocultar as armas do player
+            foreach (var arma in armas)
+            {
+                arma.SetActive(false);
+            }
+        }
+
         if(CanvasGameMng.Instance.JogoPausado == true) return;
 
         //Verificar qual arma está ativa

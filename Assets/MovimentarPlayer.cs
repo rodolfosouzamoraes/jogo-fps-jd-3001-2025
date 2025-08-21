@@ -35,7 +35,8 @@ public class MovimentarPlayer : MonoBehaviour
     void Update()
     {
         //Verificar se o jogo está pausado
-        if (CanvasGameMng.Instance.JogoPausado == true) return;
+        if (CanvasGameMng.Instance.JogoPausado == true ||
+            CanvasGameMng.PnlStatusPlayer.fimDeJogo == true) return;
 
         MovimentarXYZ();
 

@@ -209,6 +209,8 @@ public class PnlStatusPlayer : MonoBehaviour
 
     public void ConsumirVida(float valorConsumido)
     {
+        if (fimDeJogo == true || CanvasGameMng.Instance.JogoPausado == true) return;
+
         vidaAtual -= valorConsumido;
 
         if(vidaAtual <= 0)

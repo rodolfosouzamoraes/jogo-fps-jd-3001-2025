@@ -1,12 +1,17 @@
 using UnityEngine;
+using UnityEngine.AI;
 
 public class RondaInimigo : MovimentarInimigo
 {
     public float distanciaPerseguicao;
     private Vector3 posicaoInicial;
 
-    private void Awake()
+    private void Start()
     {
+        agent = GetComponent<NavMeshAgent>();
+
+        agent.speed = velocidade;
+
         //Obter a posição inicial do inimigo
         posicaoInicial = transform.position;
     }

@@ -3,6 +3,7 @@ using UnityEngine;
 public class DanoInimigo : MonoBehaviour
 {
     public float vida; //Vida do inimigo
+    public bool sofreuDano; //Variavel para informar se o inimigo sofreu um dano
     private InstanciarInimigos controladorDeNovoInimigo;
     
     public void EfetuarDano(float dano)

@@ -29,7 +29,14 @@ public class PatrulharInimigo : MovimentarInimigo
             destinoDoInimigo = transform.position;
         }
 
-        Patrulhar();
+        //Verificar se o inimigo deve perseguir o player
+        if (danoInimigo.sofreuDano == true) {
+            PerseguirPlayer();
+        }
+        else
+        {
+            Patrulhar();
+        }        
     }
 
     private void Patrulhar()

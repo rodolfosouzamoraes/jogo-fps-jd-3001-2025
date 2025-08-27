@@ -3,13 +3,13 @@ using UnityEngine.AI;
 
 public class InstanciarInimigos : MonoBehaviour
 {
-    public GameObject[] inimigos;
-    public int maximoInimigosNaFase;
+    public InimigoPorLevel[] inimigosPorLevel;//Inimigos e a quantidade que terá no inicio do jogo
+    private int maximoInimigosNaFase;
     public float distanciaInicialParaNovoInimigo;//Distancia da qual o inimigo vai surgir em relação ao player
     public float distanciaParaNovoInimigo;//Distancia para quando o inimigo surgir novamente
     public float tempoEsperaNovoInimigo;//Tempo de espera para surgir um novo inimigo
     private float tempoProximoInimigo; //Tempo para surgir um novo inimigo
-    private float totalInimigosInstanciados; //Armazenar o total de inimigos no jogo
+    private int totalInimigosInstanciados; //Armazenar o total de inimigos no jogo
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -19,11 +19,18 @@ public class InstanciarInimigos : MonoBehaviour
         //Definir o tempo de surgimento do proximo inimigo
         tempoProximoInimigo = tempoEsperaNovoInimigo + Time.timeSinceLevelLoad;
 
-        //Instanciar os inimigos
-        for(int i = 0; i < maximoInimigosNaFase; i++)
+        //Instanciar os primeiros inimigos
+        foreach (var inimigoLevel in inimigosPorLevel)
         {
-            InstanciarInimigo(distanciaInicialParaNovoInimigo);
+            //Instanciar os inimigos na quantidade
+            for (int i = 0; i < inimigoLevel.quantidade; i++)
+            {
+                InstanciarInimigo(distanciaInicialParaNovoInimigo, inimigoLevel.inimigo);
+            }
         }
+
+        //Definir o maximo de inimigos
+        maximoInimigosNaFase = totalInimigosInstanciados;
     }
 
     // Update is called once per frame
@@ -37,11 +44,12 @@ public class InstanciarInimigos : MonoBehaviour
             tempoProximoInimigo = Time.timeSinceLevelLoad + tempoEsperaNovoInimigo;
 
             //Instancio o inimigo novo
-            InstanciarInimigo(distanciaParaNovoInimigo);
+            int inimigoSorteado = new System.Random().Next(0,inimigosPorLevel.Length);
+            InstanciarInimigo(distanciaParaNovoInimigo, inimigosPorLevel[inimigoSorteado].inimigo);
         }
     }
 
-    private void InstanciarInimigo(float distancia)
+    private void InstanciarInimigo(float distancia, GameObject inimigo)
     {
         //Definir a posição em Z aleatóriamente onde o inimigo irá surgir
         float posicaoZ = Random.Range(
@@ -64,11 +72,8 @@ public class InstanciarInimigos : MonoBehaviour
             1
         );
 
-        //Sortear o inimigo que será instanciado
-        int inimigoSorteado = new System.Random().Next(0,inimigos.Length);
-
         //Instanciar o inimigo no jogo
-        GameObject novoInimigo = Instantiate(inimigos[inimigoSorteado]);
+        GameObject novoInimigo = Instantiate(inimigo);
 
         //Referenciar o novo inimigo com o script de instanciar
         novoInimigo.GetComponent<DanoInimigo>().ReferenciarInimigo(this);

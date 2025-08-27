@@ -20,6 +20,9 @@ public class DanoInimigo : MonoBehaviour
             //Destruir o inimigo
             Destroy(gameObject);
         }
+
+        //Dizer que sofreu um dano
+        sofreuDano = true;
     }
 
     public void ReferenciarInimigo(InstanciarInimigos referencia)

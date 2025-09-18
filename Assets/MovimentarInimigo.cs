@@ -4,6 +4,7 @@ using UnityEngine.AI;
 public class MovimentarInimigo : MonoBehaviour
 {
     protected NavMeshAgent agent; //IA do Inimigo
+    public SuporteAnimacaoInimigo animacaoInimigo; //Codigos da animação do inimigo
     public float velocidade; //velocidade da movimentação
     public float distanciaMinimaDoPlayer; //Definir a distancia miníma que o inimigo terá do player
     public bool estaVendoPlayer;
@@ -37,6 +38,9 @@ public class MovimentarInimigo : MonoBehaviour
             agent.destination = transform.position;
 
             OlharParaPlayer();
+
+            //Ativar animação de ataque
+            animacaoInimigo.PlayAtacando();
         }
         else
         {
@@ -44,6 +48,9 @@ public class MovimentarInimigo : MonoBehaviour
             agent.destination = PlayerMng.Instance.transform.position;
 
             estaVendoPlayer = false;
+
+            //Ativar animação de corrida do inimigo
+            animacaoInimigo.PlayCorrendo();
         }        
     }
 

@@ -40,7 +40,7 @@ public class MovimentarInimigo : MonoBehaviour
             OlharParaPlayer();
 
             //Ativar animação de ataque
-            animacaoInimigo.PlayAtacando();
+            animacaoInimigo?.PlayAtacando();
         }
         else
         {
@@ -50,7 +50,7 @@ public class MovimentarInimigo : MonoBehaviour
             estaVendoPlayer = false;
 
             //Ativar animação de corrida do inimigo
-            animacaoInimigo.PlayCorrendo();
+            animacaoInimigo?.PlayCorrendo();
         }        
     }
 

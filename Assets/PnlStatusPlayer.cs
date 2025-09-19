@@ -342,6 +342,9 @@ public class PnlStatusPlayer : MonoBehaviour
         {
             fimDeJogo = true;
             pnlFimDeJogo.SetActive(true);
+
+            Cursor.lockState = CursorLockMode.None;
+            Cursor.visible = true;
         }
     }
 }

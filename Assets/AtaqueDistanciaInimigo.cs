@@ -2,16 +2,11 @@ using UnityEngine;
 
 public class AtaqueDistanciaInimigo : MonoBehaviour
 {
+    public SuporteAnimacaoInimigo animacaoInimigo;
     public float distanciaDeAtaque;
     public GameObject projetil;
-    public float tempoEspera;
     private float distancia;
-    private float tempoAtaque;
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
-    {
-        tempoAtaque = Time.time + tempoEspera;
-    }
+
 
     // Update is called once per frame
     void Update()
@@ -25,30 +20,25 @@ public class AtaqueDistanciaInimigo : MonoBehaviour
             //Olhar para o player
             OlharParaPlayer();
 
-            //Atacar o player
-            AtirarProjetil();
+            animacaoInimigo.PlayAtacando();
+        }
+        else
+        {
+            animacaoInimigo.PlayParado();
         }
     }
 
-    private void AtirarProjetil()
+    public void AtirarProjetil()
     {
-        //verificar se está no tempo de atirar
-        if(Time.time > tempoAtaque)
-        {
-            //Atualizar o tempo de ataque
-            tempoAtaque = Time.time + tempoEspera;
+        //Instancio o projetil
+        GameObject novoProjetil = Instantiate(projetil);
 
-            //Instancio o projetil
-            GameObject novoProjetil = Instantiate(projetil);
+        //Coloco o projetil na mesma posição e rotação do inimigo
+        novoProjetil.transform.position = transform.position;
+        novoProjetil.transform.rotation = transform.rotation;
 
-            //Coloco o projetil na mesma posição e rotação do inimigo
-            novoProjetil.transform.position = transform.position;
-            novoProjetil.transform.rotation = transform.rotation;
-
-            //Incremento uma distancia em z para o projetil aparecer na frente do inimigo
-            novoProjetil.transform.Translate(new Vector3(0, 0, 1.24f));
-
-        }
+        //Incremento uma distancia em z para o projetil aparecer na frente do inimigo
+        novoProjetil.transform.Translate(new Vector3(0, 0, 1.24f));
     }
     private void OlharParaPlayer()
     {

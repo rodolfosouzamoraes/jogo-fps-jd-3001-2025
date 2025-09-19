@@ -41,6 +41,8 @@ public class PatrulharInimigo : MovimentarInimigo
 
     private void Patrulhar()
     {
+        animacaoInimigo.PlayCorrendo();
+
         //Verificar se ele chegou ao destino
         if(Vector3.Distance(transform.position, destinoDoInimigo) < 0.005f)
         {

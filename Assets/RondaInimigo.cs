@@ -31,6 +31,14 @@ public class RondaInimigo : MovimentarInimigo
         {
             //Mandar o inimigo para a posição inicial
             agent.destination = posicaoInicial;
+
+            float distanciaPontoOriginal = Vector3.Distance(posicaoInicial,
+            transform.position);
+
+            if(distanciaPontoOriginal < 0.1f)
+            {
+                animacaoInimigo.PlayParado();
+            }
         }
     }
 }

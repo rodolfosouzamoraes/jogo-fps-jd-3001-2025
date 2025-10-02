@@ -1,0 +1,58 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &8768273562482769204
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7473209606184005767}
+  - component: {fileID: 4926788082182381642}
+  m_Layer: 0
+  m_Name: InstanciarInimigos
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &7473209606184005767
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8768273562482769204}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &4926788082182381642
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8768273562482769204}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 044b10b9f92880b4f82b48f86a9537ec, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  inimigosPorLevel:
+  - inimigo: {fileID: 1238424925969349813, guid: 09609413b99484d4295144bd8513083b, type: 3}
+    quantidade: 5
+  - inimigo: {fileID: 5650806736647393963, guid: d8821573703887b45b1d81b5c71ec8f5, type: 3}
+    quantidade: 5
+  - inimigo: {fileID: 7164929828247727819, guid: 4f5c30a35d8446741a891e82397fcf79, type: 3}
+    quantidade: 10
+  - inimigo: {fileID: 7164929828247727819, guid: 3324f49a78169084ea20277018320ce7, type: 3}
+    quantidade: 30
+  distanciaInicialParaNovoInimigo: 50
+  distanciaParaNovoInimigo: 30
+  tempoEsperaNovoInimigo: 10
